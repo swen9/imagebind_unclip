@@ -80,11 +80,11 @@ if __name__ == "__main__":
 
     if "image" in output:
         pipe = StableUnCLIPImg2ImgPipeline.from_pretrained("stabilityai/stable-diffusion-2-1-unclip")
-        #pipe = pipe.to("cuda")
+        pipe = pipe.to("cuda")
         print ("loading")
 
         imagebind = imagebind_model_unnorm.imagebind_huge(pretrained=True)
         imagebind.eval()
-        #imagebind.to("cuda")
+        imagebind.to("cuda")
         images = image_generate(inputs, imagebind, pipe, prompt='', cache_size=10, cache_t=20, cache_weight=0.5,)
         images[0].save("demo.png")
